@@ -1,6 +1,6 @@
-import chalk from "chalk";
-import detect from "detect-port";
-require("dotenv").config();
+import chalk from 'chalk';
+import detect from 'detect-port';
+require('dotenv').config();
 
 export const frontendPort = process.env.PORT;
 export const backendPort = process.env.REACT_APP_BACKEND_PORT;

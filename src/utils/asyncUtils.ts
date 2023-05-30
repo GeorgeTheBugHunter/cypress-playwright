@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import axios from "axios";
+import dotenv from 'dotenv';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ httpClient.interceptors.request.use((config) => {
   ) {
     const accessToken = localStorage.getItem(process.env.REACT_APP_AUTH_TOKEN_NAME!);
     // @ts-ignore
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
   return config;
 });

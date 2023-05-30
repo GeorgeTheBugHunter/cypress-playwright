@@ -1,16 +1,16 @@
 /* istanbul ignore next */
-import React, { useEffect } from "react";
-import { useActor, useMachine } from "@xstate/react";
-import { makeStyles } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import React, { useEffect } from 'react';
+import { useActor, useMachine } from '@xstate/react';
+import { makeStyles } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 
-import { snackbarMachine } from "../machines/snackbarMachine";
-import { notificationsMachine } from "../machines/notificationsMachine";
-import { authService } from "../machines/authMachine";
-import AlertBar from "../components/AlertBar";
-import { bankAccountsMachine } from "../machines/bankAccountsMachine";
-import PrivateRoutesContainer from "./PrivateRoutesContainer";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { snackbarMachine } from '../machines/snackbarMachine';
+import { notificationsMachine } from '../machines/notificationsMachine';
+import { authService } from '../machines/authMachine';
+import AlertBar from '../components/AlertBar';
+import { bankAccountsMachine } from '../machines/bankAccountsMachine';
+import PrivateRoutesContainer from './PrivateRoutesContainer';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 // @ts-ignore
 if (window.Cypress) {
@@ -21,7 +21,7 @@ if (window.Cypress) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
 }));
 
@@ -40,14 +40,14 @@ const AppAuth0: React.FC = () => {
   useEffect(() => {
     (async function waitForToken() {
       const token = await getAccessTokenSilently();
-      authService.send("AUTH0", { user, token });
+      authService.send('AUTH0', { user, token });
     })();
   }, [isAuthenticated, user, getAccessTokenSilently]);
 
   const isLoggedIn =
-    authState.matches("authorized") ||
-    authState.matches("refreshing") ||
-    authState.matches("updating");
+    authState.matches('authorized') ||
+    authState.matches('refreshing') ||
+    authState.matches('updating');
 
   return (
     <div className={classes.root}>

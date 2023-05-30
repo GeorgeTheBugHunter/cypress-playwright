@@ -1,17 +1,17 @@
-import Amplify, { Auth } from "aws-amplify";
+import Amplify, { Auth } from 'aws-amplify';
 
-Amplify.configure(Cypress.env("awsConfig"));
+Amplify.configure(Cypress.env('awsConfig'));
 
 // Amazon Cognito
-Cypress.Commands.add("loginByCognitoApi", (username, password) => {
+Cypress.Commands.add('loginByCognitoApi', (username, password) => {
   const log = Cypress.log({
-    displayName: "COGNITO LOGIN",
+    displayName: 'COGNITO LOGIN',
     message: [`🔐 Authenticating | ${username}`],
     // @ts-ignore
     autoEnd: false,
   });
 
-  log.snapshot("before");
+  log.snapshot('before');
 
   const signIn = Auth.signIn({ username, password });
 
@@ -38,34 +38,34 @@ Cypress.Commands.add("loginByCognitoApi", (username, password) => {
       cognitoResponse.username
     );
 
-    window.localStorage.setItem("amplify-authenticator-authState", "signedIn");
+    window.localStorage.setItem('amplify-authenticator-authState', 'signedIn');
 
-    log.snapshot("after");
+    log.snapshot('after');
     log.end();
   });
 
-  cy.visit("/");
+  cy.visit('/');
 });
 
 // Amazon Cognito
-Cypress.Commands.add("loginByCognito", (username, password) => {
+Cypress.Commands.add('loginByCognito', (username, password) => {
   cy.session(
     `cognito-${username}`,
     () => {
       Cypress.log({
-        displayName: "COGNITO LOGIN",
+        displayName: 'COGNITO LOGIN',
         message: [`🔐 Authenticating | ${username}`],
         // @ts-ignore
         autoEnd: false,
       });
 
-      cy.visit("/");
-      cy.contains("Sign in with AWS", {
+      cy.visit('/');
+      cy.contains('Sign in with AWS', {
         includeShadowDom: true,
       }).click();
 
       cy.origin(
-        Cypress.env("cognito_domain"),
+        Cypress.env('cognito_domain'),
         {
           args: {
             username,
@@ -87,11 +87,11 @@ Cypress.Commands.add("loginByCognito", (username, password) => {
       cy.wait(2000);
 
       // verify we have made it passed the login screen
-      cy.contains("Get Started").should("be.visible");
+      cy.contains('Get Started').should('be.visible');
     },
     {
       validate() {
-        cy.visit("/");
+        cy.visit('/');
         /**
          * NOTE: We recommend validating sessions by either validating
          * localStorage or cookies values, or possibly accessing an
@@ -102,7 +102,7 @@ Cypress.Commands.add("loginByCognito", (username, password) => {
          * and not blocked by a login screen
          */
         // revalidate our session to make sure we are logged in
-        cy.contains("Get Started").should("be.visible");
+        cy.contains('Get Started').should('be.visible');
       },
     }
   );

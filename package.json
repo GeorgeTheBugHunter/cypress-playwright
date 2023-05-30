@@ -2,10 +2,7 @@
   "name": "cypress-realworld-app",
   "version": "1.0.0",
   "description": "A payment application to demonstrate **real-world** usage of Cypress testing methods, patterns, and workflows. For a full reference of our documentation, go to https://docs.cypress.io",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cypress-io/cypress-realworld-app.git"
-  },
+  "repository": "https://github.com/cypress-io/cypress-realworld-app.git",
   "author": "Cypress-io",
   "license": "MIT",
   "bugs": {
@@ -54,6 +51,7 @@
     "@cypress/webpack-dev-server": "^1.6.0",
     "@faker-js/faker": "6.1.2",
     "@percy/cypress": "2.3.4",
+    "@playwright/test": "^1.34.3",
     "@types/bcryptjs": "2.4.2",
     "@types/bluebird": "3.5.36",
     "@types/connect-flash": "0.0.37",
@@ -116,6 +114,7 @@
     "nyc": "15.1.0",
     "passport": "0.6.0",
     "passport-local": "1.0.0",
+    "playwright": "^1.34.3",
     "prettier": "2.6.2",
     "react-scripts": "4.0.3",
     "start-server-and-test": "1.14.0",
@@ -236,5 +235,6 @@
       "html",
       "json"
     ]
-  }
+  },
+  "main": "index.js"
 }

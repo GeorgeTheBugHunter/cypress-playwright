@@ -1,24 +1,24 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { Router } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@material-ui/core";
-import { Auth0Provider } from "@auth0/auth0-react";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Router } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import { Auth0Provider } from '@auth0/auth0-react';
 /* istanbul ignore next */
 // @ts-ignore
-import { OktaAuth } from "@okta/okta-auth-js";
-import { Security } from "@okta/okta-react";
+import { OktaAuth } from '@okta/okta-auth-js';
+import { Security } from '@okta/okta-react';
 
-import App from "./containers/App";
-import AppGoogle from "./containers/AppGoogle";
-import AppAuth0 from "./containers/AppAuth0";
-import AppOkta from "./containers/AppOkta";
-import AppCognito from "./containers/AppCognito";
-import { history } from "./utils/historyUtils";
+import App from './containers/App';
+import AppGoogle from './containers/AppGoogle';
+import AppAuth0 from './containers/AppAuth0';
+import AppOkta from './containers/AppOkta';
+import AppCognito from './containers/AppCognito';
+import { history } from './utils/historyUtils';
 
 const theme = createTheme({
   palette: {
     secondary: {
-      main: "#fff",
+      main: '#fff',
     },
   },
 });
@@ -28,7 +28,7 @@ const onRedirectCallback = (appState: any) => {
   history.replace((appState && appState.returnTo) || window.location.pathname);
 };
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById('root'));
 
 /* istanbul ignore if */
 if (process.env.REACT_APP_AUTH0) {
@@ -53,7 +53,7 @@ if (process.env.REACT_APP_AUTH0) {
   const oktaAuth = new OktaAuth({
     issuer: `https://${process.env.REACT_APP_OKTA_DOMAIN}/oauth2/default`,
     clientId: process.env.REACT_APP_OKTA_CLIENTID,
-    redirectUri: window.location.origin + "/implicit/callback",
+    redirectUri: window.location.origin + '/implicit/callback',
   });
 
   /* istanbul ignore next */
